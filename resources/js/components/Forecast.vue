@@ -49,6 +49,7 @@
             return {
 
                 forecasts: [],
+               // todayForecast: [],
                 cityByIp: '',
                 moment: moment,
                 pageNumber: 0,
@@ -81,6 +82,9 @@
                         //set forecasts array to list object from response...
                         this.forecasts = response.data.list;
                         this.cityByIp = response.data.city.name;
+                        const todayForecast = response.data.list.filter(f => f.dt_txt.includes('2019-07-31'));
+
+                        console.log(todayForecast);
 
 
 
