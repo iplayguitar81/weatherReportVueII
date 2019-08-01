@@ -21,8 +21,15 @@
 
     @else
 
+
+        <div class="text-center">
+        <router-link class="btn btn-dark" to="/">5-Day Forecast</router-link>
+        <router-link class="btn btn-secondary" to="/current-forecast">Current Forecast</router-link>
+        </div>
+
+
         <div class="container">
-        <forecast></forecast>
+            <router-view> </router-view>
         </div>
 
     @endif
