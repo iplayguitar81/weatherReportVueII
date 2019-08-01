@@ -1,7 +1,7 @@
 <template>
 
     <div>
-    <h1>Weather Forecast <span class="text-muted">| {{ cityByIp }}</span> </h1>
+    <h1>5-Day Weather Forecast <br/><span class="text-muted"> {{ cityByIp }}</span> </h1>
 
 
     <nav aria-label="Page navigation example">
@@ -49,7 +49,6 @@
             return {
 
                 forecasts: [],
-               // todayForecast: [],
                 cityByIp: '',
                 moment: moment,
                 pageNumber: 0,
@@ -78,31 +77,9 @@
                     .get(url)
                     .then(response => {
 
-                        console.log(response.data);
                         //set forecasts array to list object from response...
                         this.forecasts = response.data.list;
                         this.cityByIp = response.data.city.name;
-
-
-                        //
-                        let today = moment().format("YYYY-MM-DD");
-
-                        let nextDay = moment().add(1, 'day').format("YYYY-MM-DD");
-                        console.log(today);
-                        console.log(nextDay);
-
-                        //set todayForecast value
-                        let todayForecast = response.data.list.filter(f => f.dt_txt.includes(today));
-
-                        //if object length is 0 then grab the following day's forecast...
-                        if( (todayForecast.length === 0)) {
-
-                            todayForecast = response.data.list.filter(f => f.dt_txt.includes(nextDay));
-
-                        }
-
-                        console.log(todayForecast);
-
 
                     })
                     .catch(error => {

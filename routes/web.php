@@ -11,13 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('weather-vue');
-});
 
-
-
-
-Route::get('/weather', function () {
+//accept any route for VueJS SPA functionality...
+Route::get('/{any?}', function () {
     return view('component-vue');
 });
