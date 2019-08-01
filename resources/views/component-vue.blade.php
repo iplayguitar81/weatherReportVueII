@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Vue/Laravel Weather Report cSnyder</title>
+    <title>Laravel/Vue Weather Report</title>
     <meta name="csrf-token" content="{{csrf_token()}}">
     <script>window.Laravel = {csrfToken: '{{csrf_token()}}'}</script>
 
