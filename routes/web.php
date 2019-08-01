@@ -15,4 +15,4 @@
 //accept any route for VueJS SPA functionality...
 Route::get('/{any?}', function () {
     return view('component-vue');
-});
+})->where('any', '.*');
