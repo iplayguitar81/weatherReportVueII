@@ -9,12 +9,16 @@
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/weather">Vue/Laravel</a>
+                    <router-link class="nav-link" to="/">5 Day Forecast</router-link>
                 </li>
-                <!--<li class="nav-item">-->
-                    <!--<a class="nav-link" href="/">Regular Laravel</a>-->
-                <!--</li>-->
-            </ul></div></nav>
+
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/current-forecast">Current Forecast</router-link>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
 
 
 </template>
