@@ -82,16 +82,27 @@
                         //set forecasts array to list object from response...
                         this.forecasts = response.data.list;
                         this.cityByIp = response.data.city.name;
-                        const todayForecast = response.data.list.filter(f => f.dt_txt.includes('2019-07-31'));
+
+
+                        //
+                        let today = moment().format("YYYY-MM-DD");
+
+                        let nextDay = moment().add(1, 'day').format("YYYY-MM-DD");
+                        console.log(today);
+                        console.log(nextDay);
+
+                        //set todayForecast value
+                        let todayForecast = response.data.list.filter(f => f.dt_txt.includes(today));
+
+                        //if object length is 0 then grab the following day's forecast...
+                        if( (todayForecast.length === 0)) {
+
+                            todayForecast = response.data.list.filter(f => f.dt_txt.includes(nextDay));
+
+                        }
 
                         console.log(todayForecast);
 
-
-
-                        //testing by logging values to console...
-                        //  console.log(response.data);
-                        //  console.log(this.cityByIp);
-                        //console.log(this.forecasts.length);
 
                     })
                     .catch(error => {

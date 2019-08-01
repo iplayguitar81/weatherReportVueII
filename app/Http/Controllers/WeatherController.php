@@ -20,6 +20,8 @@ class WeatherController extends Controller
         // check if cache has forecastData from the last 24 hours, if not then call the requestWeather function...
         // if something goes wrong catch the exception and display error message for user
 
+
+
         try {
 
             //gather user's ip address from laravel...
