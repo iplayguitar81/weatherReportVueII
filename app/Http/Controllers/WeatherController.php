@@ -20,6 +20,7 @@ class WeatherController extends Controller
         // check if cache has forecastData from the last 24 hours, if not then call the requestWeather function...
         // if something goes wrong catch the exception and display error message for user
 
+        Cache::clear();
 
 
         try {
@@ -66,7 +67,7 @@ class WeatherController extends Controller
 
 
 
-    //api call to request weather based on ip address of user...
+    //api call to request weather forecast based on ip address of user...
     public function requestWeather($lat, $long) {
 
 
@@ -99,5 +100,77 @@ class WeatherController extends Controller
         return Cache::put('forecastData', $forecastData, now()->addHours(24));
 
     }
+
+
+
+    public function currentForecast() {
+
+
+        try {
+
+            //gather user's ip address from laravel...
+            $userIP = request()->ip();
+
+            //get location based on ip address (geoIP package)...
+            $geoIParr = geoip()->getLocation($userIP);
+
+            //declare variables to base API call off of city and state if desired...
+            //$userCity = $geoIParr['city'];
+            //$userState = $geoIParr['state'];
+
+            $userLatitude = $geoIParr['lat'];
+            $userLongitude = $geoIParr['lon'];
+
+
+            //check if cache is set and if not... call controller's requestWeather function to retrieve forecast from API
+            if (Cache::has('currentWeather')) {
+
+                $currentWeather = Cache::get('currentWeather');
+            } else {
+
+                $this->currentWeather($userLatitude, $userLongitude);
+                //set forecastData after request and caching takes place...
+                $currentWeather = Cache::get('currentWeather');
+            }
+
+
+            return $currentWeather;
+
+        }
+
+        catch (\Exception $ex) {
+
+            //   display error message if something goes wrong with API call or recalling cached values...
+            return back()->withError('Sorry!  There is not a forecast available at this time.  Something went wrong.  Please try again later.');
+
+        }
+    }
+
+
+    //current forecast
+    public function currentWeather($lat, $long) {
+
+        //set user lat and long based on passed values to method...
+        $userLatitude = $lat;
+        $userLongitude =$long;
+
+        //instantiate Guzzle client...
+        $client = new Client();
+
+        $url = 'api.openweathermap.org/data/2.5/weather?lat='.$userLatitude.'&lon='.$userLongitude.'&units=imperial&APPID=ad463d4c462f97b7da391ddf58a33d69';
+
+
+
+        $response = $client->request('GET', $url);
+
+        //json_decode and set to associative array
+        $currentWeather = json_decode($response->getBody(), true);
+
+
+        return Cache::put('currentWeather', $currentWeather, now()->addHours(24));
+    }
+
+
+
 
 }

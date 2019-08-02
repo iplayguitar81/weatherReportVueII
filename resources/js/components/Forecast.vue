@@ -3,7 +3,6 @@
     <div>
     <h1>5-Day Weather Forecast <br/><span class="text-muted"> {{ cityByIp }}</span> </h1>
 
-
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li v-bind:class="[{disabled: pageNumber === 0}]" class="page-item"><a class="page-link" href="#" @click="prevPage">Previous</a></li>

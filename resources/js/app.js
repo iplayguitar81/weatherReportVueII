@@ -20,6 +20,8 @@ Vue.use(VueAxios,axios);
 
 import Forecast from './components/Forecast.vue';
 import TodayForecast from './components/TodayForecast.vue';
+import CurrentForecast from './components/CurrentForecast.vue';
+
 import Navbar from './components/Navbar.vue';
 import StickyFooter from './components/StickyFooter.vue';
 
@@ -35,7 +37,8 @@ let app = new Vue({
         Forecast,
         Navbar,
         StickyFooter,
-        TodayForecast
+        TodayForecast,
+        CurrentForecast
 
 
     },

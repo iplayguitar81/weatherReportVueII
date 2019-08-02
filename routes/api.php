@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //API route to request forecasts based on user's ip address/lat and longitude...
 Route::get('forecasts', 'WeatherController@forecast');
+
+
+//API route to request current forecast based on user's ip address/lat and longitude...
+Route::get('current', 'WeatherController@currentForecast');

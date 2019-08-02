@@ -1,6 +1,6 @@
 <template>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-danger mb-2"><a href="/weather" class="navbar-brand text-white">Laravel/Vue Weather SPA</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger mb-2"><a href="/" class="navbar-brand text-white">Laravel/Vue Weather SPA</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,8 +12,16 @@
                 </li>
 
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/current-forecast">Current Forecast</router-link>
+                    <router-link class="nav-link" to="/test-forecast">Current Forecast</router-link>
                 </li>
+
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/current-forecast">Day/Next Day Forecast</router-link>
+                </li>
+
+
+
+
 
             </ul>
         </div>

@@ -1,5 +1,7 @@
 import Forecast from './components/Forecast.vue';
 import TodayForecast from './components/TodayForecast.vue';
+import CurrentForecast from './components/CurrentForecast.vue';
+
 
 
 export default {
@@ -21,6 +23,13 @@ export default {
             component: TodayForecast
 
         },
+
+        {
+            path: '/test-forecast',
+            component: CurrentForecast
+
+        },
+
 
 
     ]
